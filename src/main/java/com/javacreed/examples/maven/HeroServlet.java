@@ -1,6 +1,9 @@
 package com.javacreed.examples.maven;
 
+import org.joda.time.DateTime;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,26 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-
-/*
-* Technology stack ****
-* MySql database
-* html/css /jsp
-* Servlet
-* Maven Build Tool
-*
-*
-* */
-
-
-
-
-
-
-
-
-
-public class HelloServlet extends HttpServlet {
+@WebServlet("/hero")
+public class HeroServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1533532266743443618L;
 
@@ -36,10 +21,13 @@ public class HelloServlet extends HttpServlet {
             IOException {
 
         response.setContentType("text/html");
-       // request.
+
+
+        DateTime dateTime = new DateTime();
+        System.out.println(dateTime);
 
         try (PrintWriter out = response.getWriter()) {
-            out.println("<html><body><h1>Hello Servlet:)</h1><p>I am running on an embedded Tomcat, thanks to Maven</p></body></html>");
+            out.println("<html><body><h1>Hello <p>You are hero</p></body></html>");
         }
     }
 }
