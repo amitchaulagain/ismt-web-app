@@ -7,6 +7,17 @@ public class Student {
 	private String course;
 	private int year;
 
+	public Student() {
+	}
+
+	public Student(int studentId, String firstName, String lastName, String course, int year) {
+		this.studentId = studentId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.course = course;
+		this.year = year;
+	}
+
 	public int getStudentId() {
 		return studentId;
 	}
