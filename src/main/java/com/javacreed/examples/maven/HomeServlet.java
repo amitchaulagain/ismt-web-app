@@ -33,6 +33,13 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("ball",2.66667);*/
 
 
+        String firstName=request.getParameter("first_name");
+        String lastName=request.getParameter("last_name");
+
+
+
+
+
         List<Student> students = new ArrayList<>();
 
         Student student1= new Student();
