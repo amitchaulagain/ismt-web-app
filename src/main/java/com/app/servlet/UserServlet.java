@@ -17,7 +17,11 @@ import java.util.List;
 /*
  * Update User
  *
- * Get User By Id
+ * List of users  ---> /users      ---->   /users     GET
+ * Get by id      ---> /user?id=   ---->  /user?id=   GET
+ * create         ---> createUser  ---->/user         POST
+ * update         --->             ----> /user        PUT
+ * delete         ---> /deleteUser  ----> /user?id=   DELETE
  *
  *
  * */
@@ -93,7 +97,7 @@ public class UserServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            response.sendRedirect("/user");
+            response.sendRedirect("/users");
 
         }
 

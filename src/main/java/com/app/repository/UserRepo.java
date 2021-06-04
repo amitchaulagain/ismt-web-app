@@ -111,7 +111,7 @@ public class UserRepo {
 
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(QUERY);) {
-            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
