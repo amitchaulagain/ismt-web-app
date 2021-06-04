@@ -103,5 +103,36 @@ public class UserRepo {
             JDBCUtils.printSQLException(e);
         }
     }
+
+    public User getById(int id) {
+        final String QUERY = "select * from users where id =?";
+        User user = null;
+        try (Connection connection = JDBCUtils.getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);) {
+            preparedStatement.setInt(1, 1);
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            // while (rs.next()) {
+            rs.next();
+            int userId = rs.getInt("id");
+            String name = rs.getString("name");
+            String email = rs.getString("email");
+            String country = rs.getString("country");
+            String password = rs.getString("password");
+            System.out.println(id + "," + name + "," + email + "," + country + "," + password);
+            user = new User(userId, name, email, password, country);
+
+            //}
+        } catch (SQLException e) {
+            JDBCUtils.printSQLException(e);
+        }
+        return user;
+    }
+
 }
 

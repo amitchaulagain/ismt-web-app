@@ -21,7 +21,7 @@
 	                <div class="col-10">
 		                <input type="text" class="form-control"
 		                    name="id" value="<c:out value="${student.id}" />"
-		                   placeholder="Read only field" />
+		                   placeholder="enter id" />
 	                </div>
 	            </div>
 				<div class="form-group row">

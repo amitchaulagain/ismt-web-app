@@ -15,13 +15,13 @@ import java.util.List;
 
 
 /*
-* Update User
-*
-* Get User By Id
-*
-*
-* */
-@WebServlet(urlPatterns = {"/user", "/createUser","/deleteUser"})
+ * Update User
+ *
+ * Get User By Id
+ *
+ *
+ * */
+@WebServlet(urlPatterns = {"/users", "/createUser", "/deleteUser","/user"})
 public class UserServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -35,9 +35,10 @@ public class UserServlet extends HttpServlet {
 
         System.out.println(request.getServletPath());
 
-        if (request.getServletPath().equals("/user")) {
+        if (request.getServletPath().equals("/users")) {
             List<User> users = repo.listUsers();
-            request.setAttribute("users", users);
+            request.setAttribute("company", "Apple Inc");
+            request.setAttribute("userList", users);
             RequestDispatcher view = request.getRequestDispatcher("views/user.jsp");
             view.forward(request, response);
 
@@ -48,7 +49,15 @@ public class UserServlet extends HttpServlet {
         } else if (request.getServletPath().equals("/deleteUser")) {
             int id = Integer.parseInt(request.getParameter("id"));
             repo.delete(id);
-            response.sendRedirect("/user");
+            response.sendRedirect("/users");
+
+        }
+        else if (request.getServletPath().equals("/user")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+           User user= repo.getById(id);
+           request.setAttribute("user",user);
+            RequestDispatcher view = request.getRequestDispatcher("views/get-user.jsp");
+            view.forward(request, response);
 
         }
 
@@ -77,25 +86,28 @@ public class UserServlet extends HttpServlet {
 
         if (request.getServletPath().equals("/createUser")) {
 
-            User user = new User();
-            user.setId(Integer.parseInt(request.getParameter("id")));
-            user.setName(request.getParameter("name"));
-            user.setEmail(request.getParameter("email"));
-            user.setPassword(request.getParameter("password"));
-            user.setCountry(request.getParameter("country"));
+            User user = getUserData(request);
 
             try {
                 repo.insert(user);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-//            RequestDispatcher view = request.getRequestDispatcher("/user");
-//            view.forward(request, response);
             response.sendRedirect("/user");
 
         }
 
 
+    }
+
+    private User getUserData(HttpServletRequest request) {
+        User user = new User();
+        user.setId(Integer.parseInt(request.getParameter("id")));
+        user.setName(request.getParameter("name"));
+        user.setEmail(request.getParameter("email"));
+        user.setPassword(request.getParameter("password"));
+        user.setCountry(request.getParameter("country"));
+        return user;
     }
 
 

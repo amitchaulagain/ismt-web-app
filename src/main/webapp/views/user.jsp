@@ -14,7 +14,7 @@
 
     <div class="container container-default">
 
-	   <h1>Users  List Page</h1>
+	   <h1>  ${company}   Users  List Page</h1>
 	    <table class="table table-striped">
 	        <thead>
 	            <tr>
@@ -27,15 +27,19 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <c:forEach var="oneUser" items="${users}" >
+	            <c:forEach var="oneUser" items="${userList}" >
 	                <tr>
 	                    <td><c:out value="${oneUser.id}" /></td>
 	                    <td><c:out value="${oneUser.name}" /></td>
 	                    <td><c:out value="${oneUser.email}" /></td>
 	                    <td><c:out value="${oneUser.password}" /></td>
 	                    <td><c:out value="${oneUser.country}" /></td>
-	                    <td><a class="btn btn-primary" role="button"
+	                    <td>
+	                     <a class="btn btn-primary" role="button" style="padding-left:5px;"
+                        	                        href="/user?id=<c:out value="${oneUser.id }"/>">Details</a>
+	                    <a class="btn btn-primary" role="button"
 	                        href="StudentServlet.do?action=edit&studentId=<c:out value="${student.studentId }"/>">Update</a>
+
 	                    <a class="btn btn-primary" role="button" style="padding-left:5px;"
 	                        href="/deleteUser?id=<c:out value="${oneUser.id }"/>">Delete</a>
 
