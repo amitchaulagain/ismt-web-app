@@ -19,14 +19,17 @@ public class UpdatePStatementExample {
     }
 
     public void updateRecord() throws SQLException {
-        System.out.println(UPDATE_USERS_SQL);
+        final String UPDATE_USERS_SQL = "update users set name = ?, email=?,password=?,country=? where id = ?;";
         // Step 1: Establishing a Connection
         try (Connection connection = JDBCUtils.getConnection();
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERS_SQL)) {
             preparedStatement.setString(1, "harish");
             preparedStatement.setString(2, "hari@gmail.com");
-            preparedStatement.setInt(3, 1);
+            preparedStatement.setString(3, "hari@gmail.com");
+            preparedStatement.setString(4, "hari@gmail.com");
+
+            preparedStatement.setInt(3, 5);
 
 
             // Step 3: Execute the query or update query

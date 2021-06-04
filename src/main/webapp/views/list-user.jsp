@@ -38,10 +38,10 @@
 	                     <a class="btn btn-primary" role="button" style="padding-left:5px;"
                         	                        href="/user?id=<c:out value="${oneUser.id }"/>">Details</a>
 	                    <a class="btn btn-primary" role="button"
-	                        href="StudentServlet.do?action=edit&studentId=<c:out value="${student.studentId }"/>">Update</a>
+	                        href="/editUser?id=<c:out value="${oneUser.id }"/>">Update</a>
 
 	                    <a class="btn btn-primary" role="button" style="padding-left:5px;"
-	                        href="/deleteUser?id=<c:out value="${oneUser.id }"/>">Delete</a>
+	                        method ="D" href="/user?id=<c:out value="${oneUser.id }"/>">Delete</a>
 
 	                    </td>
 

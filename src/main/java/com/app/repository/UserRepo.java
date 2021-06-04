@@ -134,5 +134,28 @@ public class UserRepo {
         return user;
     }
 
+    public void edit(User user) {
+
+        final String UPDATE_USERS_SQL = "update users set name = ?, email=?,password=?,country=? where id = ?;";
+        // Step 1: Establishing a Connection
+        try (Connection connection = JDBCUtils.getConnection();
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERS_SQL)) {
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getCountry());
+            preparedStatement.setInt(5, user.getId());
+
+
+            // Step 3: Execute the query or update query
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+
+            // print SQL exception information
+            JDBCUtils.printSQLException(e);
+        }
+
+    }
 }
 

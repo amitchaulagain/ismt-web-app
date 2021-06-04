@@ -18,14 +18,14 @@ import java.util.List;
  * Update User
  *
  * List of users  ---> /users      ---->   /users     GET
- * Get by id      ---> /user?id=   ---->  /user?id=   GET
- * create         ---> createUser  ---->/user         POST
- * update         --->             ----> /user        PUT
- * delete         ---> /deleteUser  ----> /user?id=   DELETE
+ * Get by id      ---> /user?id=2&name=ram   ---->  /user?id=   GET
+ * create         ---> /user  ---->/user?country=us        POST
+ * update         ---> /user            ----> /user        PUT
+ * delete         ---> /user  ----> /user?id=   DELETE
  *
  *
  * */
-@WebServlet(urlPatterns = {"/users", "/createUser", "/deleteUser","/user"})
+@WebServlet(urlPatterns = {"/users", "/createUser", "/editUser", "/user"})
 public class UserServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -43,23 +43,26 @@ public class UserServlet extends HttpServlet {
             List<User> users = repo.listUsers();
             request.setAttribute("company", "Apple Inc");
             request.setAttribute("userList", users);
-            RequestDispatcher view = request.getRequestDispatcher("views/user.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("views/list-user.jsp");
             view.forward(request, response);
 
         } else if (request.getServletPath().equals("/createUser")) {
             RequestDispatcher view = request.getRequestDispatcher("views/create-user.jsp");
             view.forward(request, response);
 
-        } else if (request.getServletPath().equals("/deleteUser")) {
+        } else if (request.getServletPath().equals("/editUser")) {
             int id = Integer.parseInt(request.getParameter("id"));
-            repo.delete(id);
-            response.sendRedirect("/users");
+            User user = repo.getById(id);
 
-        }
-        else if (request.getServletPath().equals("/user")) {
+            request.setAttribute("user", user);
+
+            RequestDispatcher view = request.getRequestDispatcher("views/edit-user.jsp");
+            view.forward(request, response);
+
+        } else if (request.getServletPath().equals("/user")) {
             int id = Integer.parseInt(request.getParameter("id"));
-           User user= repo.getById(id);
-           request.setAttribute("user",user);
+            User user = repo.getById(id);
+            request.setAttribute("user", user);
             RequestDispatcher view = request.getRequestDispatcher("views/get-user.jsp");
             view.forward(request, response);
 
@@ -71,24 +74,8 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        Student student = new Student();
-//        student.setFirstName(request.getParameter("firstName"));
-//        student.setLastName(request.getParameter("lastName"));
-//        student.setCourse(request.getParameter("course"));
-//        student.setYear(Integer.parseInt(request.getParameter("year")));
-//        String studentId = request.getParameter("studentId");
-//
-//        if (studentId == null || studentId.isEmpty())
-//            dao.addStudent(student);
-//        else {
-//            student.setStudentId(Integer.parseInt(studentId));
-//            dao.updateStudent(student);
-//        }
-//        RequestDispatcher view = request.getRequestDispatcher(lIST_STUDENT);
-//        request.setAttribute("students", dao.getAllStudents());
-//        view.forward(request, response);
 
-        if (request.getServletPath().equals("/createUser")) {
+        if (request.getServletPath().equals("/user")) {
 
             User user = getUserData(request);
 
@@ -114,5 +101,31 @@ public class UserServlet extends HttpServlet {
         return user;
     }
 
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        if (request.getServletPath().equals("/user")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            repo.delete(id);
+            response.sendRedirect("/users");
+
+        }
+
+
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        if (request.getServletPath().equals("/user")) {
+
+            User user = getUserData(request);
+
+            repo.edit(user);
+            response.sendRedirect("/users");
+
+        }
+    }
 
 }

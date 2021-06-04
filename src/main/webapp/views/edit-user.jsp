@@ -15,12 +15,12 @@
   <h1>Add/Edit User Page</h1>
    <div class="container container-default">
    		<div class="well">
-			<form action="/user" method="post">
+			<form action="/user" method="put">
 				 <div class="form-group row">
 	                <label for="id" class="col-2 col-form-label"> ID</label>
 	                <div class="col-10">
 		                <input type="text" class="form-control"
-		                    name="id" value="<c:out value="${student.id}" />"
+		                    name="id" value="<c:out value="${user.id}" />"
 		                   placeholder="enter id" />
 	                </div>
 	            </div>
@@ -29,7 +29,7 @@
 						Name</label>
 					<div class="col-10">
 						<input class="form-control" type="text" name="name"
-							value="<c:out value="${student.name}"/>" id="name"
+							value="<c:out value="${user.name}"/>" id="name"
 							placeholder=" Name">
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 					<label for="email" class="col-2 col-form-label">Email</label>
 					<div class="col-10">
 						<input class="form-control" type="text" name="email"
-							value="<c:out value="${student.email}"/>" id="email"
+							value="<c:out value="${user.email}"/>" id="email"
 							placeholder="Email ">
 					</div>
 				</div>
@@ -46,7 +46,7 @@
 					<label for="password" class="col-2 col-form-label">Password</label>
 					<div class="col-10">
 						<input class="form-control" type="text" name="password"
-							value="<c:out value="${student.course}"/>" id="password"
+							value="<c:out value="${user.password}"/>" id="password"
 							placeholder="Password">
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 					<label for="year" class="col-2 col-form-label">Country</label>
 					<div class="col-10">
 						<input class="form-control" type="text" name="country"
-							value="<c:out value="${student.year}"/>" id="country"
+							value="<c:out value="${user.country}"/>" id="country"
 							placeholder="country">
 					</div>
 				</div>
