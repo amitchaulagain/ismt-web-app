@@ -98,6 +98,15 @@ public class UserServlet extends HttpServlet {
         user.setEmail(request.getParameter("email"));
         user.setPassword(request.getParameter("password"));
         user.setCountry(request.getParameter("country"));
+        String gender = request.getParameter("gender");
+        if (gender.equals("male")) {
+            user.setMale(true);
+        } else {
+            user.setMale(false);
+
+        }
+
+
         return user;
     }
 

@@ -6,10 +6,19 @@ public class User {
 	private String email;
 	private String password;
 	private String country;
+	private boolean male;
 
 	public User() {
 	}
 
+	public User(int id, String name, String email, String password, String country,boolean isMale) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.country = country;
+		this.male=isMale;
+	}
 	public User(int id, String name, String email, String password, String country) {
 		this.id = id;
 		this.name = name;
@@ -56,5 +65,13 @@ public class User {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public boolean isMale() {
+		return male;
+	}
+
+	public void setMale(boolean male) {
+		this.male = male;
 	}
 }

@@ -58,6 +58,16 @@
 							placeholder="country">
 					</div>
 				</div>
+				<div class="form-group row">
+                					<label for="year" class="col-2 col-form-label">Gender</label>
+                					<br>
+                						<input  type="radio" id="male" name="gender" value="male">
+                                        <label for="male">Male</label><br>
+                                        <input  type="radio" id="female" name="gender" value="female">
+                                        <label for="female">Female</label><br>
+                				</div>
+
+
 		
 				<div>
 					<button type="submit" class="btn btn-primary">Submit</button>

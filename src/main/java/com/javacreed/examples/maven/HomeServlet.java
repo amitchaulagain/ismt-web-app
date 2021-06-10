@@ -10,9 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
@@ -25,40 +29,9 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        File directory = new File("./");
+        System.out.println(directory.getAbsolutePath());
 
-
-
-       /* request.setAttribute("test","We are testing");
-        request.setAttribute("apple",1000);
-        request.setAttribute("ball",2.66667);*/
-
-
-        String firstName=request.getParameter("first_name");
-        String lastName=request.getParameter("last_name");
-
-
-
-
-
-        List<Student> students = new ArrayList<>();
-
-        Student student1= new Student();
-        student1.setStudentId(1);
-        student1.setFirstName("Ram");
-        student1.setLastName("Kumar");
-        student1.setCourse("bsc csit");
-        student1.setYear(2021);
-        students.add(student1);
-
-        students.add(new Student(2,"Sam","Bdr","bsc",2022));
-        students.add(new Student(3,"Hari","Bdr","bsc",2012));
-
-
-        request.setAttribute("studentsList",students);
-
-
-        RequestDispatcher view = request.getRequestDispatcher("views/home.jsp");
-        view.forward(request, response);
     }
 
     @Override
