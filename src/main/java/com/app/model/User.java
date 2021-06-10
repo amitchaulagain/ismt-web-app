@@ -6,6 +6,9 @@ public class User {
 	private String email;
 	private String password;
 	private String country;
+	private boolean male;
+	private String gender;
+
 
 	public User() {
 	}
@@ -56,5 +59,27 @@ public class User {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public boolean isMale() {
+		return male;
+	}
+
+	public void setMale(boolean male) {
+		this.male = male;
+		if(male){
+			this.gender="Male";
+		}
+		else {
+			this.gender="Female";
+		}
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 }
