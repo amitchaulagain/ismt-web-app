@@ -24,6 +24,7 @@
 	                <th>Password</th>
 	                <th>Country</th>
 	                 <th>Gender</th>
+	                 <th>Courses</th>
 	                <th colspan="2">Action</th>
 	            </tr>
 	        </thead>
@@ -36,6 +37,7 @@
 	                    <td><c:out value="${oneUser.password}" /></td>
 	                    <td><c:out value="${oneUser.country}" /></td>
 	                    <td><c:out value="${oneUser.male}" /></td>
+	                    <td><c:out value="${oneUser.allCourse}" /></td>
 	                    <td>
 	                     <a class="btn btn-primary" role="button" style="padding-left:5px;"
                         	                        href="/user?id=<c:out value="${oneUser.id }"/>">Details</a>

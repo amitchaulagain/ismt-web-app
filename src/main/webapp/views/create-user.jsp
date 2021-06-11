@@ -70,6 +70,17 @@
 
 		
 				<div>
+
+				<div class="form-group row">
+                <label for="year" class="col-2 col-form-label">Courses</label>
+                <br>
+                <input type="checkbox" name="courses" value="JAVA" >JAVA<br>
+                <input type="checkbox" name="courses" value="C++" >C++<br>
+                <input type="checkbox" name="courses" value="PHP" >PHP<br>
+                <input type="checkbox" name="courses" value="Python" >Python<br>
+
+                <div>
+
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 

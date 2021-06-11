@@ -106,6 +106,15 @@ public class UserServlet extends HttpServlet {
 
         }
 
+        String allCourses[] = request.getParameterValues("courses");
+
+        String csvValues = String.join(",", allCourses);
+
+        user.setAllCourse(csvValues);
+
+
+        System.out.println(allCourses);
+
 
         return user;
     }
