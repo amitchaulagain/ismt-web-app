@@ -14,8 +14,8 @@ public class UserRepo {
 
     public void insert(User user) throws SQLException {
         final String INSERT_USERS_SQL = "INSERT INTO users" +
-                "  (id, name, email, country, password,is_male) VALUES " +
-                " (?, ?, ?, ?, ?, ?);";
+                "  (id, name, email, country, password,is_male,courses) VALUES " +
+                " (?, ?, ?, ?, ?, ?, ?);";
 
 
         // Step 1: Establishing a Connection
@@ -28,6 +28,8 @@ public class UserRepo {
             preparedStatement.setString(4, user.getCountry());
             preparedStatement.setString(5, user.getPassword());
             preparedStatement.setBoolean(6,user.isMale());
+            preparedStatement.setString(7,user.getCourses());
+
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -71,6 +73,7 @@ public class UserRepo {
                 System.out.println(id + "," + name + "," + email + "," + country + "," + password);
                 User user = new User(id, name, email, password, country);
                 user.setMale(rs.getBoolean("is_male"));
+                user.setCourses(rs.getString("courses"));
                 users.add(user);
 
             }

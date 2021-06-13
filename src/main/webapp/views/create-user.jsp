@@ -67,6 +67,16 @@
                 </div>
 		
 				<div>
+
+				<div class="form-group row">
+                <label for="male">Courses </label>
+                <br>
+               <input type="checkbox" name="courses" value="JAVA" >JAVA<br>
+               <input type="checkbox" name="courses" value="C++" >C++<br>
+               <input type="checkbox" name="courses" value="PHP" >PHP<br>
+               <input type="checkbox" name="courses" value="SCALA" >SCALA<br>
+
+               	<div>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 

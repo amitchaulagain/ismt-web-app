@@ -8,6 +8,8 @@ public class User {
 	private String country;
 	private boolean male;
 	private String gender;
+	private String courses;
+
 
 
 	public User() {
@@ -81,5 +83,13 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getCourses() {
+		return courses;
+	}
+
+	public void setCourses(String courses) {
+		this.courses = courses;
 	}
 }

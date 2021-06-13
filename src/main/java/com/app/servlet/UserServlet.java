@@ -103,11 +103,15 @@ public class UserServlet extends HttpServlet {
         String gender = request.getParameter("gender");
         if (gender.equals("male")) {
             user.setMale(true);
-        }
-        else{
+        } else {
             user.setMale(false);
 
         }
+        String[] selectedCourses = request.getParameterValues("courses");
+        String csv = String.join(",", selectedCourses);
+        user.setCourses(csv);
+
+
         return user;
     }
 
