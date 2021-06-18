@@ -11,9 +11,8 @@ import java.sql.SQLException;
  * @author Ramesh Fadatare
  *
  */
-public class SelectAllStatementExample {
-    private static final String QUERY = "SELECT p.created_at, op.created_at as hero   FROM products p join ordered_product op ";
-
+public class OneToOneExample {
+    private static final String QUERY = "select GID as id,Name as name,Address as address from gov g join state  s where g.gid=s.sgid";
     public static void main(String[] args) {
 
         // using try-with-resources to avoid closing resources (boiler plate code)
@@ -31,14 +30,24 @@ public class SelectAllStatementExample {
             // Step 4: Process the ResultSet object.
            while (rs.next()) {
 
-               String  cre = rs.getString("created_at");
-               String created = rs.getString("hero");
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String email = rs.getString("created_at");
-                String country = rs.getString("country");
-                String password = rs.getString("password");
-                System.out.println(id + "," + name + "," + email + "," + country + "," + password);
+               String  gid = rs.getString("id");
+               String name = rs.getString("name");
+               String address = rs.getString("address");
+                String begin = rs.getString("TermBegin");
+                String state = rs.getString("StateName");
+                String population = rs.getString("Population");
+
+
+               System.out.println("id " + gid);
+               System.out.println("name " + name);
+
+               System.out.println("address " + address);
+
+               System.out.println("begin " + begin);
+               System.out.println("state " + state);
+               System.out.println("population " + population);
+
+
            }
         } catch (SQLException e) {
         	JDBCUtils.printSQLException(e);
