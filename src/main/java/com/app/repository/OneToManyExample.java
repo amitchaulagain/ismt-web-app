@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  */
 public class OneToManyExample {
-    private static final String QUERY = "SELECT   v.Vendorint as id,v.Name as name,i.item as product,i.CurrentQuantity as qty,i.Description as description from  vendor  v join inventory i where v.Vendorint=i.Vendorint and v.Vendorint='1'";
+    private static final String QUERY = "select v.Vendorint as id ,i.Item as item ,i.Description as description,i.CurrentQuantity as qty,v.Name as name,v.Phoneint as phone from inventory i  join vendor v where v.VendorInt=i.Vendorint and v.Vendorint=?";
 
     public static void main(String[] args) {
 
@@ -23,19 +23,23 @@ public class OneToManyExample {
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);) {
-           // preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(1, 2);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
+
 
             // Step 4: Process the ResultSet object.
            while (rs.next()) {
 
                String  gid = rs.getString("id");
-               String name = rs.getString("name");
-               String address = rs.getString("product");
+               String name = rs.getString("item");
+               String address = rs.getString("description");
                 String begin = rs.getString("qty");
-                String state = rs.getString("description");
+                String state = rs.getString("name");
+               String phone = rs.getString("phone");
+
+
 
 
                System.out.println("id " + gid);
